@@ -20,10 +20,16 @@ public class UnitTest1
                 constraint CK1 check (C1=1)
                 constraint UQ1 unique
                 constraint DF1 default 0,
+            C2 int not null
+                constraint CK2 check (C2=1)
+                constraint DF2 default 0
+                constraint UQ2 unique,
             constraint AK1 unique (C1),
             constraint AK1ToBeDropped unique (C1),
             constraint TCK1 check (C1=1),
-            constraint TCK1ToBeDropped check (C1=1)
+            constraint TCK1ToBeDropped check (C1=1),
+            constraint AK2 unique (C1, C2),
+            constraint TCK2 check (C1=C2)
         );
         """,
         """
@@ -33,8 +39,14 @@ public class UnitTest1
                 constraint CK1 check (C1=1)
                 constraint UQ1 unique
                 constraint DF1 default 0,
+            C2 bigint not null
+                constraint CK2 check (C2=1)
+                constraint DF2 default 0
+                constraint UQ2 unique,
             constraint AK1 unique (C1),
-            constraint TCK1 check (C1=1)
+            constraint TCK1 check (C1=1),
+            constraint AK2 unique (C1, C2),
+            constraint TCK2 check (C1=C2)
         );
         """,
         typeof(AlterTableAlterColumnStatement))]
